@@ -8,7 +8,6 @@ import { LogoIcon, SearchIcon, UserIcon, CartIcon, HeartIcon, SunIcon, MoonIcon,
 interface HeaderProps {
   navigate: (view: View) => void;
   cartItemCount: number;
-  toggleCart: () => void;
 }
 
 const ThemeToggle: React.FC = () => {
@@ -20,7 +19,7 @@ const ThemeToggle: React.FC = () => {
     );
 };
 
-const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount, toggleCart }) => {
+const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
     const { user } = useAuth();
@@ -81,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount, toggleCart }) 
                     <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-secondary transition-colors">
                         <HeartIcon className="w-6 h-6" />
                     </button>
-                    <button onClick={toggleCart} className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-secondary transition-colors">
+                    <button onClick={() => navigate({ name: 'cart' })} className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-secondary transition-colors">
                         <CartIcon className="w-6 h-6" />
                         {cartItemCount > 0 && <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{cartItemCount}</span>}
                     </button>

@@ -8,8 +8,8 @@ import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
+import CartPage from './pages/CartPage';
 import Chatbot from './components/shared/Chatbot';
-import CartDrawer from './components/cart/CartDrawer';
 import type { Product, Category, View, Order, Review, CartItem, Variant } from './types';
 import { products as initialProducts, categories, initialOrders } from './data/mockData';
 
@@ -20,7 +20,6 @@ const AppContent: React.FC = () => {
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [orders, setOrders] = useState<Order[]>(initialOrders);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [isCartOpen, setIsCartOpen] = useState(false);
 
     useEffect(() => {
         if (theme === 'dark') {
@@ -76,8 +75,6 @@ const AppContent: React.FC = () => {
         });
     };
 
-    const toggleCart = () => setIsCartOpen(prev => !prev);
-
     const handleAddToCart = (product: Product, quantity: number, selectedVariants: Variant[]) => {
         const cartItemId = `${product.id}_${selectedVariants.map(v => v.value).sort().join('_')}`;
 
@@ -100,7 +97,7 @@ const AppContent: React.FC = () => {
                 return [...prevItems, newItem];
             }
         });
-        setIsCartOpen(true);
+        navigate({ name: 'cart' });
     };
 
     const handleRemoveFromCart = (cartItemId: string) => {
@@ -141,6 +138,14 @@ const AppContent: React.FC = () => {
                 return <ProfilePage navigate={navigate} orders={orders} products={products} onAddReview={handleAddReview} />;
             case 'login':
                 return <LoginPage navigate={navigate} />;
+             case 'cart':
+                return <CartPage
+                    cartItems={cartItems}
+                    onRemoveItem={handleRemoveFromCart}
+                    onUpdateQuantity={handleUpdateCartQuantity}
+                    navigate={navigate}
+                    products={products}
+                />;
             case 'home':
             default:
                 return <HomePage navigate={navigate} products={products} />;
@@ -157,19 +162,12 @@ const AppContent: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen font-sans text-light-text dark:text-dark-text">
-            <Header navigate={navigate} cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} toggleCart={toggleCart} />
+            <Header navigate={navigate} cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} />
             <main className="flex-grow">
                 {renderView()}
             </main>
             <Footer />
             <Chatbot />
-            <CartDrawer
-                isOpen={isCartOpen}
-                onClose={toggleCart}
-                cartItems={cartItems}
-                onRemoveItem={handleRemoveFromCart}
-                onUpdateQuantity={handleUpdateCartQuantity}
-            />
         </div>
     );
 };

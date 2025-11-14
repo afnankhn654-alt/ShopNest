@@ -3,29 +3,14 @@ import type { View, Product } from '../types';
 import HeroSlider from '../components/home/HeroSlider';
 import FlashSaleSection from '../components/home/FlashSaleSection';
 import ProductCarousel from '../components/home/ProductCarousel';
-import { categories, customerVideoReviews } from '../data/mockData';
+import CategoryIcons from '../components/home/CategoryIcons';
+import { customerVideoReviews } from '../data/mockData';
 import { formatPrice } from '../utils/helpers';
 
 interface HomePageProps {
   navigate: (view: View) => void;
   products: Product[];
 }
-
-const CategoryIcons: React.FC<{ navigate: (view: View) => void }> = ({ navigate }) => (
-    <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
-        <div className="grid grid-cols-4 md:grid-cols-8 gap-4 text-center">
-            {categories.slice(0, 8).map(cat => (
-                <div key={cat.id} onClick={() => navigate({ name: 'category', id: cat.id })} className="flex flex-col items-center space-y-2 cursor-pointer group">
-                    <div className="w-12 h-12 bg-gray-100 dark:bg-secondary rounded-full flex items-center justify-center group-hover:bg-primary transition-colors text-primary group-hover:text-white">
-                       {/* FIX: Replaced redundant React.cloneElement with direct rendering of cat.icon. */}
-                       {cat.icon}
-                    </div>
-                    <span className="text-xs font-medium">{cat.name}</span>
-                </div>
-            ))}
-        </div>
-    </div>
-);
 
 const VideoReviewsSection: React.FC = () => (
     <div className="py-8">
