@@ -9,6 +9,8 @@ import CategoryPage from './pages/CategoryPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import CartPage from './pages/CartPage';
+import AboutPage from './pages/AboutPage';
+import SearchPage from './pages/SearchPage';
 import Chatbot from './components/shared/Chatbot';
 import type { Product, Category, View, Order, Review, CartItem, Variant } from './types';
 import { products as initialProducts, categories, initialOrders } from './data/mockData';
@@ -146,6 +148,10 @@ const AppContent: React.FC = () => {
                     navigate={navigate}
                     products={products}
                 />;
+            case 'about':
+                return <AboutPage />;
+            case 'search':
+                return <SearchPage query={view.query} navigate={navigate} allProducts={products} />;
             case 'home':
             default:
                 return <HomePage navigate={navigate} products={products} />;
@@ -162,11 +168,15 @@ const AppContent: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen font-sans text-light-text dark:text-dark-text">
-            <Header navigate={navigate} cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} />
+            <Header 
+                navigate={navigate} 
+                cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+                products={products}
+            />
             <main className="flex-grow">
                 {renderView()}
             </main>
-            <Footer />
+            <Footer navigate={navigate} />
             <Chatbot />
         </div>
     );

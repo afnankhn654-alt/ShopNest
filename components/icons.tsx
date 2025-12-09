@@ -176,3 +176,45 @@ export const TrashIcon: React.FC<IconProps> = ({ className }) => (
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
     </svg>
 );
+
+export const BoltIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.07 4.93a1 1 0 0 1 1.86 0l2.5 6.25a1 1 0 0 1-.8 1.32h-2.13v4.25a1 1 0 0 1-1.86 0v-4.25H8.52a1 1 0 0 1-.79-1.32l2.55-6.25z"/>
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+    </svg>
+);
+
+export const NetworkIntelligenceIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a10 10 0 0 0-4.3 19.4m8.6 0A10 10 0 0 0 12 2" />
+        <path d="M2 12h2m16 0h2" />
+        <path d="M12 2a7 7 0 0 1 5 12.2" />
+        <path d="M12 2a7 7 0 0 0-5 12.2" />
+        <path d="M12 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+        <path d="M7 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+        <path d="M17 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+        <path d="M12 18a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+    </svg>
+);
+
+export const UsersIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm-3 5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+);
+
+export const ShieldCheckIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944a11.955 11.955 0 0018 0 12.02 12.02 0 00-2.382-8.988z"></path></svg>
+);
+
+export const LightbulbIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 20.364V17a3 3 0 00-3-3H9m6 3.364A3 3 0 0015 17h-.001"></path></svg>
+);
+
+export const SparklesIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M19 3v4M17 5h4M14 11l-1.293-1.293a1 1 0 00-1.414 0L10 11l-1.293-1.293a1 1 0 00-1.414 0L6 11l-2 2 2 2 1.293-1.293a1 1 0 000-1.414l1.414-1.414 1.293 1.293a1 1 0 001.414 0L14 15l2-2-2-2z"></path></svg>
+);
+
+export const UploadIcon: React.FC<IconProps> = ({ className }) => (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+    </svg>
+);

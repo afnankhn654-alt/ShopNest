@@ -33,16 +33,6 @@ export const initialOrders: Order[] = [
         items: [
             { productId: 'p4', quantity: 1, hasBeenReviewed: false },
         ]
-    },
-     {
-        id: 'order-3',
-        userId: DUMMY_USER_ID,
-        date: '2023-09-05',
-        status: 'Delivered',
-        total: 120.00,
-        items: [
-            { productId: 'p2', quantity: 1, hasBeenReviewed: false },
-        ]
     }
 ];
 
@@ -53,9 +43,9 @@ const existingProducts: Product[] = [
     name: 'AURA-X Pro Wireless Earbuds',
     description: 'Experience immersive sound with the new AURA-X Pro. Featuring active noise cancellation, a 30-hour battery life, and crystal-clear call quality. Perfect for music lovers and professionals on the go.',
     images: [
-      'https://images.unsplash.com/photo-1606741965326-cb990ae107b3?w=800&h=800&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1618384887924-367292a47f4b?w=800&h=800&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1613134128275-53f764a5c05c?w=800&h=800&fit=crop&q=80'
+      'https://images.pexels.com/photos/1037999/pexels-photo-1037999.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+      'https://images.pexels.com/photos/19134441/pexels-photo-19134441.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+      'https://images.pexels.com/photos/16334251/pexels-photo-16334251.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'
     ],
     videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4',
     price: 89.99,
@@ -64,7 +54,7 @@ const existingProducts: Product[] = [
     reviewCount: 1250,
     stock: 15,
     category: 'electronics',
-    brand: 'Johnny Sins',
+    brand: 'AuraSound',
     tags: ['Official Store', 'Sale', 'New Arrival'],
     variants: [
         { type: 'color', value: 'black', label: 'Midnight Black', stock: 15},
@@ -81,76 +71,30 @@ const existingProducts: Product[] = [
       {
             id: 'r1-p1',
             userId: DUMMY_USER_ID,
-            author: 'Talha Reviews',
-            avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop',
+            author: 'Alex Reviews',
+            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop',
             rating: 5,
             title: 'Absolutely fantastic!',
             content: 'This product exceeded all my expectations. The build quality is top-notch and it performs flawlessly. Highly recommended!',
             date: '2023-10-26',
             isVerified: true,
             images: [
-              'https://images.unsplash.com/photo-1591342371134-3a5665313936?w=200&h=200&fit=crop&q=80',
-              'https://images.unsplash.com/photo-1589502543313-069f52d0b57c?w=200&h=200&fit=crop&q=80'
+              'https://images.pexels.com/photos/10017493/pexels-photo-10017493.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+              'https://images.pexels.com/photos/10017492/pexels-photo-10017492.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop'
             ],
         },
     ],
     faqs: [{ question: 'Are they compatible with iPhone?', answer: 'Yes, they are fully compatible with all iOS and Android devices.' }],
-    seller: { id: 's1', name: 'AuraSound Official', logo: 'https://images.unsplash.com/photo-1611108010197-991d9ec831d5?w=40&h=40&fit=crop&q=60', rating: 4.9, followers: 50000 }
-  },
-  {
-    id: 'p2',
-    name: 'Le Parfum Mystique',
-    description: 'An enchanting fragrance that captures the essence of a midnight garden. A blend of rare florals and exotic spices, perfect for unforgettable evenings.',
-    images: [
-      'https://images.unsplash.com/photo-1617121221473-8c4598b0b1f2?w=800&h=800&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1588224973053-d1f0b09335a7?w=800&h=800&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1622631976033-11b33b7a5843?w=800&h=800&fit=crop&q=80'
-    ],
-    price: 120.00,
-    rating: 4.9,
-    reviewCount: 340,
-    stock: 50,
-    category: 'perfumes',
-    brand: 'Maison de Senteurs',
-    tags: ['Mall'],
-    variants: [
-        { type: 'size', value: '50ml', label: '50ml', stock: 50 },
-        { type: 'size', value: '100ml', label: '100ml', stock: 25 },
-    ],
-    specifications: [
-        { key: 'Type', value: 'Eau de Parfum' },
-        { key: 'For', value: 'Women' },
-    ],
-    perfumeNotes: {
-        top: ['Jasmine', 'Saffron'],
-        middle: ['Amberwood', 'Ambergris'],
-        base: ['Fir Resin', 'Cedar']
-    },
-    reviews: [
-      {
-          id: 'r1-p2',
-          userId: 'user-jane-doe',
-          author: 'Jane Doe',
-          avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=40&h=40&fit=crop',
-          rating: 4,
-          title: 'Enchanting and long-lasting',
-          content: 'A truly mystical scent. It lasts the entire day and I get so many compliments. The bottle is also a piece of art.',
-          date: '2023-09-20',
-          isVerified: true,
-          images: [],
-      }
-    ],
-    faqs: [{ question: 'How long does the scent last?', answer: 'It typically lasts for 8-10 hours, depending on skin type and environment.' }],
-    seller: { id: 's2', name: 'ScentsnStories PK', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=40&h=40&fit=crop&q=60', rating: 4.8, followers: 120000 }
+    seller: { id: 's1', name: 'AuraSound Official', logo: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop', rating: 4.9, followers: 50000 }
   },
   {
     id: 'p3',
     name: 'Urban Explorer Tech Jacket',
     description: 'A stylish and functional jacket designed for the modern adventurer. Made with water-resistant fabric, multiple pockets, and a sleek urban design.',
     images: [
-        'https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1591953902346-0d190b39dd75?w=800&h=800&fit=crop&q=80'
+        'https://images.pexels.com/photos/8372733/pexels-photo-8372733.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+        'https://images.pexels.com/photos/1684880/pexels-photo-1684880.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+        'https://images.pexels.com/photos/7480337/pexels-photo-7480337.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'
     ],
     price: 159.50,
     originalPrice: 199.00,
@@ -175,8 +119,8 @@ const existingProducts: Product[] = [
       {
           id: 'r1-p3',
           userId: DUMMY_USER_ID,
-          author: 'Talha Reviews',
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&h=40&fit=crop',
+          author: 'Alex Reviews',
+          avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop',
           rating: 4,
           title: 'Stylish and very practical',
           content: "Great jacket for the price. It's lightweight but keeps you warm. The water-resistance works well in light rain. Lots of useful pockets.",
@@ -186,15 +130,16 @@ const existingProducts: Product[] = [
       }
     ],
     faqs: [{ question: 'Is it machine washable?', answer: 'Yes, it is machine washable on a gentle cycle.' }],
-    seller: { id: 's3', name: 'Nomi.pk Official', logo: 'https://images.unsplash.com/photo-1549924231-f929de01e5f4?w=40&h=40&fit=crop&q=60', rating: 4.9, followers: 85000 }
+    seller: { id: 's3', name: 'Nomi Official', logo: 'https://images.pexels.com/photos/221185/pexels-photo-221185.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop', rating: 4.9, followers: 85000 }
   },
   {
     id: 'p4',
     name: 'SmartBrew Coffee Maker',
     description: 'The SmartBrew Coffee Maker connects to your WiFi, allowing you to schedule your brew from anywhere using our app. Wake up to the perfect cup of coffee every morning.',
     images: [
-        'https://images.unsplash.com/photo-1603568843232-2428d575402c?w=800&h=800&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1554162445-b461aa7b3633?w=800&h=800&fit=crop&q=80'
+        'https://images.pexels.com/photos/6788323/pexels-photo-6788323.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+        'https://images.pexels.com/photos/4309328/pexels-photo-4309328.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+        'https://images.pexels.com/photos/4109849/pexels-photo-4109849.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'
     ],
     price: 99.00,
     rating: 4.6,
@@ -210,7 +155,7 @@ const existingProducts: Product[] = [
     ],
     reviews: [],
     faqs: [],
-    seller: { id: 's4', name: 'Daraz Mall', logo: 'https://images.unsplash.com/photo-1580974853248-732398508b98?w=40&h=40&fit=crop&q=60', rating: 4.7, followers: 1200000 }
+    seller: { id: 's4', name: 'ShopNest Mall', logo: 'https://images.pexels.com/photos/4109744/pexels-photo-4109744.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop', rating: 4.7, followers: 1200000 }
   }
 ];
 
@@ -218,22 +163,22 @@ const existingProducts: Product[] = [
 
 // A pool of reliable, high-quality images for generated tech products
 const techImagePool = [
-    'https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?w=800&h=800&fit=crop&q=80', // Drone
-    'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&h=800&fit=crop&q=80', // Smartphone
-    'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&h=800&fit=crop&q=80', // Gaming Laptop
-    'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?w=800&h=800&fit=crop&q=80', // Smartwatch
-    'https://images.unsplash.com/photo-1516941151323-864a3951f43a?w=800&h=800&fit=crop&q=80', // VR Headset
-    'https://images.unsplash.com/photo-1563297055-17912d0e8235?w=800&h=800&fit=crop&q=80', // Camera
-    'https://images.unsplash.com/photo-1593152147344-e386e8493325?w=800&h=800&fit=crop&q=80', // Tablet
-    'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=800&h=800&fit=crop&q=80', // Desk Setup
-    'https://images.unsplash.com/photo-1627843563095-f6e94676cfe0?w=800&h=800&fit=crop&q=80', // Smart Speaker
-    'https://images.unsplash.com/photo-1617006132788-b785e519c5a1?w=800&h=800&fit=crop&q=80', // Mechanical Keyboard
-    'https://images.unsplash.com/photo-1546435770-a3e426bf4022?w=800&h=800&fit=crop&q=80', // Graphics Card
-    'https://images.unsplash.com/photo-1579586337278-35d18b3d8096?w=800&h=800&fit=crop&q=80', // Wireless Mouse
-    'https://images.unsplash.com/photo-1519968948342-a2fa382a048e?w=800&h=800&fit=crop&q=80', // Projector
-    'https://images.unsplash.com/photo-1629895694776-85141451f288?w=800&h=800&fit=crop&q=80', // SSD Drive
-    'https://images.unsplash.com/photo-1624424361226-f3318a48bfee?w=800&h=800&fit=crop&q=80', // Router
-    'https://images.unsplash.com/photo-1587098422176-157470a6a3b8?w=800&h=800&fit=crop&q=80', // Action Camera
+    'https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/341523/pexels-photo-341523.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/459654/pexels-photo-459654.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/39284/macbook-apple-imac-computer-39284.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/2528118/pexels-photo-2528118.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/2047905/pexels-photo-2047905.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/38568/apple-imac-ipad-workplace-38568.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/2148216/pexels-photo-2148216.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
+    'https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop',
 ];
 
 const generatedProducts: Product[] = [];
@@ -241,7 +186,7 @@ const prefixes = ['Quantum', 'Aero', 'Cyber', 'Nano', 'Fusion', 'Stellar', 'Hype
 const nouns = ['Core', 'Pulse', 'Byte', 'Sync', 'Wave', 'Drive', 'Matrix', 'Shift', 'Bot', 'Grid'];
 const suffixes = ['X', 'Pro', 'Max', 'Ultra', 'Plus', '9000', 'Z', 'Alpha', 'Omega', 'Prime'];
 const brands = ['InnovateX', 'TechSphere', 'Apex', 'StarkTech', 'FutureGadget', 'DigitalDreams', 'NextGen', 'Visionary'];
-const techSeller = { id: 's-tech', name: 'Global Electronics', logo: 'https://images.unsplash.com/photo-1633355521193-8a032f89a8e2?w=40&h=40&fit=crop&q=60', rating: 4.8, followers: 250000 };
+const techSeller = { id: 's-tech', name: 'Global Electronics', logo: 'https://images.pexels.com/photos/4109744/pexels-photo-4109744.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop', rating: 4.8, followers: 250000 };
 
 for (let i = 0; i < 500; i++) {
     const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
@@ -262,7 +207,6 @@ for (let i = 0; i < 500; i++) {
             techImagePool[i % techImagePool.length],
             techImagePool[(i + 5) % techImagePool.length],
             techImagePool[(i + 10) % techImagePool.length],
-            techImagePool[(i + 15) % techImagePool.length],
         ],
         price: price,
         originalPrice: originalPrice,
@@ -292,15 +236,40 @@ export const products: Product[] = [...existingProducts, ...generatedProducts];
 
 
 export const heroBanners = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=1600&h=600&fit=crop&q=80', title: 'Mega Electronics Sale', subtitle: 'Up to 50% off on all gadgets' },
-  { id: 2, image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&h=600&fit=crop&q=80', title: 'New Fashion Arrivals', subtitle: 'Discover the latest trends' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1557173489-3c3a54a9a2df?w=1600&h=600&fit=crop&q=80', title: 'Fragrance Fest', subtitle: 'Exquisite scents for every occasion' },
+  { id: 1, image: 'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=1600&h=600&fit=crop', title: 'Mega Electronics Sale', subtitle: 'Up to 50% off on all gadgets' },
+  { id: 2, image: 'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1600&h=600&fit=crop', title: 'New Fashion Arrivals', subtitle: 'Discover the latest trends' },
 ];
 
 export const flashSaleProducts = products.slice(0, 4);
 
-export const customerVideoReviews = [
-    { id: 1, videoThumbnail: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=600&fit=crop', product: 'AURA-X Pro', author: 'TalhaReviews' },
-    { id: 2, videoThumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=600&fit=crop', product: 'SmartBrew Coffee', author: 'TechGuru' },
-    { id: 3, videoThumbnail: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&h=600&fit=crop', product: 'Urban Explorer Jacket', author: 'FashionForward' },
+export const teamMembers = [
+  {
+    name: 'Eleanor Vance',
+    role: 'Founder & CEO',
+    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+    bio: 'Eleanor founded ShopNest with the vision of creating a seamless and delightful online shopping experience, blending technology with a human touch.',
+  },
+  {
+    name: 'Marcus Holloway',
+    role: 'Chief Technology Officer',
+    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+    bio: 'Marcus leads our engineering team, driving innovation and ensuring our platform is robust, secure, and always ahead of the curve.',
+  },
+  {
+    name: 'Aisha Khan',
+    role: 'Head of Product',
+    image: 'https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+    bio: 'Aisha is the voice of our customers, meticulously curating our product catalog and ensuring every item meets our high standards of quality.',
+  },
+  {
+    name: 'David Chen',
+    role: 'Lead UX Designer',
+    image: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop',
+    bio: 'David crafts the beautiful and intuitive interface of ShopNest, obsessing over every detail to make your journey effortless and enjoyable.',
+  },
 ];
+
+export const aboutUsImages = {
+  hero: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1600&h=700&fit=crop',
+  mission: 'https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+};

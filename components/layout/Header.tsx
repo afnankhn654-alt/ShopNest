@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 import { useAuth } from '../../hooks/useAuth';
-import type { View } from '../../types';
+import type { View, Product } from '../../types';
 import { categories } from '../../data/mockData';
 import { LogoIcon, SearchIcon, UserIcon, CartIcon, HeartIcon, SunIcon, MoonIcon, ChevronDownIcon, MenuIcon, CloseIcon } from '../icons';
+import { formatPrice } from '../../utils/helpers';
 
 interface HeaderProps {
   navigate: (view: View) => void;
   cartItemCount: number;
+  products: Product[];
 }
 
 const ThemeToggle: React.FC = () => {
@@ -19,22 +21,99 @@ const ThemeToggle: React.FC = () => {
     );
 };
 
-const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount }) => {
+const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount, products }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isAnimatingOut, setIsAnimatingOut] = useState(false);
     const { user } = useAuth();
     
+    // Search State
+    const [query, setQuery] = useState('');
+    const [suggestions, setSuggestions] = useState<Product[]>([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const searchRef = useRef<HTMLDivElement>(null);
+    const mobileSearchRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                (searchRef.current && !searchRef.current.contains(event.target as Node)) &&
+                (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target as Node))
+            ) {
+                setShowSuggestions(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        if (newQuery.length > 1) {
+            setShowSuggestions(true);
+            const filtered = products.filter(p =>
+                p.name.toLowerCase().includes(newQuery.toLowerCase())
+            ).slice(0, 5); // Limit suggestions
+            setSuggestions(filtered);
+        } else {
+            setShowSuggestions(false);
+            setSuggestions([]);
+        }
+    };
+    
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (query.trim()) {
+            navigate({ name: 'search', query });
+            setQuery('');
+            setSuggestions([]);
+            setShowSuggestions(false);
+            if (isMenuOpen) handleCloseMenu();
+        }
+    };
+    
+    const handleSuggestionClick = (product: Product) => {
+        navigate({ name: 'product', id: product.id });
+        setQuery('');
+        setSuggestions([]);
+        setShowSuggestions(false);
+        if (isMenuOpen) handleCloseMenu();
+    };
+
     const handleCloseMenu = () => {
         setIsAnimatingOut(true);
         setTimeout(() => {
             setIsMenuOpen(false);
             setIsAnimatingOut(false);
-        }, 500); // Duration of the animation
+        }, 500);
     };
     
     const handleOpenMenu = () => {
         setIsMenuOpen(true);
     };
+
+    const SuggestionsDropdown: React.FC<{ items: Product[] }> = ({ items }) => (
+        <div className="absolute top-full mt-2 w-full bg-light-card dark:bg-dark-card rounded-lg shadow-lg z-10 overflow-hidden border dark:border-gray-700">
+            <ul>
+                {items.map(p => (
+                    <li key={p.id} onClick={() => handleSuggestionClick(p)} className="p-2 hover:bg-gray-100 dark:hover:bg-secondary cursor-pointer border-b dark:border-gray-700 last:border-b-0">
+                        <div className="flex items-center space-x-3">
+                            <img src={p.images[0]} alt={p.name} className="w-12 h-12 object-cover rounded" />
+                            <div>
+                                <p className="font-semibold text-sm">{p.name}</p>
+                                <p className="text-xs text-primary">{formatPrice(p.price)}</p>
+                            </div>
+                        </div>
+                    </li>
+                ))}
+                {query.length > 1 && (
+                     <li onClick={(e) => handleSubmit(e as any)} className="p-2 text-center text-sm font-semibold text-primary hover:bg-gray-100 dark:hover:bg-secondary cursor-pointer">
+                        View all results for "{query}"
+                    </li>
+                )}
+            </ul>
+        </div>
+    );
 
     return (
         <header className="bg-light-card dark:bg-dark-card shadow-md sticky top-0 z-50">
@@ -61,15 +140,21 @@ const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount }) => {
                 </div>
 
                 <div className="hidden lg:flex flex-grow max-w-2xl mx-4">
-                    <div className="relative w-full">
-                        <input
-                            type="text"
-                            placeholder="Search for products..."
-                            className="w-full pl-4 pr-12 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary"
-                        />
-                        <button className="absolute right-0 top-0 h-full px-4 text-white bg-primary rounded-r-full flex items-center justify-center">
-                            <SearchIcon className="w-5 h-5" />
-                        </button>
+                    <div className="relative w-full" ref={searchRef}>
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                placeholder="Search for products..."
+                                value={query}
+                                onChange={handleSearchChange}
+                                onFocus={() => query.length > 1 && setShowSuggestions(true)}
+                                className="w-full pl-4 pr-12 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary"
+                            />
+                            <button type="submit" className="absolute right-0 top-0 h-full px-4 text-white bg-primary rounded-r-full flex items-center justify-center">
+                                <SearchIcon className="w-5 h-5" />
+                            </button>
+                        </form>
+                         {showSuggestions && suggestions.length > 0 && <SuggestionsDropdown items={suggestions} />}
                     </div>
                 </div>
 
@@ -130,13 +215,21 @@ const Header: React.FC<HeaderProps> = ({ navigate, cartItemCount }) => {
                             </button>
                         </div>
                         {/* Mobile Search */}
-                        <div className="relative mb-6">
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="w-full pl-4 pr-10 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-secondary"
-                            />
-                            <SearchIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <div className="relative mb-6" ref={mobileSearchRef}>
+                            <form onSubmit={handleSubmit}>
+                                <input
+                                    type="text"
+                                    placeholder="Search..."
+                                    value={query}
+                                    onChange={handleSearchChange}
+                                    onFocus={() => query.length > 1 && setShowSuggestions(true)}
+                                    className="w-full pl-4 pr-10 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-secondary"
+                                />
+                                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <SearchIcon className="w-5 h-5 text-gray-400" />
+                                </button>
+                            </form>
+                            {showSuggestions && suggestions.length > 0 && <SuggestionsDropdown items={suggestions} />}
                         </div>
                         {/* Mobile Navigation */}
                         <ul className="space-y-4">

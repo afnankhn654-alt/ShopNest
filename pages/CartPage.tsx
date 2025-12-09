@@ -16,7 +16,7 @@ interface CartPageProps {
 const EmptyCartView: React.FC<{ navigate: (view: View) => void; products: Product[] }> = ({ navigate, products }) => (
     <div className="text-center py-16">
         <h2 className="text-3xl font-bold mb-4">Your cart feels a little lonely</h2>
-        <p className="text-lg text-light-text-secondary dark:text-dark-text-secondary mb-8">explore our best picks to fill it up.</p>
+        <p className="text-lg text-light-text-secondary dark:text-dark-text-secondary mb-8">Explore our best picks to fill it up.</p>
         <button 
             onClick={() => navigate({ name: 'home' })} 
             className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors text-lg"

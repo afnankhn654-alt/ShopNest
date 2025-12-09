@@ -76,7 +76,9 @@ export type View =
   | { name: 'profile' }
   | { name: 'cart' }
   | { name: 'wishlist' }
-  | { name: 'login' };
+  | { name: 'login' }
+  | { name: 'about' }
+  | { name: 'search'; query: string };
 
 export interface NavLink {
     name: string;
