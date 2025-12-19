@@ -15,6 +15,52 @@ type ProductToReview = {
     orderId: string;
 };
 
+const OrderTrackingTimeline: React.FC<{ status: Order['status'] }> = ({ status }) => {
+    const statuses: Order['status'][] = ['Processing', 'Shipped', 'Delivered'];
+    const currentStatusIndex = statuses.indexOf(status);
+
+    const CheckIcon = () => (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+        </svg>
+    );
+    
+    const DotIcon = () => (
+        <div className="w-3 h-3 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
+    );
+
+    const Step = ({ s, index }: { s: Order['status'], index: number }) => {
+        const isActive = index <= currentStatusIndex;
+
+        return (
+            <div className="relative flex flex-col items-center justify-center w-full">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center z-10 transition-colors duration-300 ${isActive ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-600'}`}>
+                    {isActive ? <CheckIcon /> : <DotIcon />}
+                </div>
+                <p className={`mt-2 text-xs text-center font-medium transition-colors duration-300 w-20 ${isActive ? 'text-light-text dark:text-dark-text' : 'text-light-text-secondary dark:text-dark-text-secondary'}`}>{s}</p>
+            </div>
+        );
+    };
+
+    return (
+        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <h4 className="text-sm font-semibold mb-4">Order Tracking</h4>
+            <div className="w-full px-4 sm:px-8">
+                <div className="relative flex justify-between items-center">
+                    <div className="absolute left-0 top-5 h-1 w-full bg-gray-200 dark:bg-gray-600">
+                        <div 
+                            className="absolute left-0 top-0 h-1 bg-primary transition-all duration-500 ease-out" 
+                            style={{ width: `${currentStatusIndex > 0 ? (currentStatusIndex / (statuses.length - 1)) * 100 : 0}%` }}
+                        ></div>
+                    </div>
+                    {statuses.map((s, index) => <Step key={s} s={s} index={index} />)}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 const OrderHistory: React.FC<OrderHistoryProps> = ({ orders, products, onAddReview }) => {
     const { user } = useAuth();
     const [productToReview, setProductToReview] = useState<ProductToReview | null>(null);
@@ -77,6 +123,7 @@ const OrderHistory: React.FC<OrderHistoryProps> = ({ orders, products, onAddRevi
                                     );
                                 })}
                             </div>
+                            <OrderTrackingTimeline status={order.status} />
                         </div>
                     ))}
                 </div>
